@@ -21,6 +21,10 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url 'file:..\\repository' }
+        maven {
+            url 'https://dl.bintray.com/felix-maven/maven'
+        }
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/central' }
         maven { url 'https://maven.aliyun.com/repository/releases' }
@@ -28,9 +32,7 @@ allprojects {
         maven { url 'https://maven.aliyun.com/repository/jcenter' }
         google()
         jcenter()
-        maven {
-            url 'https://dl.bintray.com/felix-maven/maven'
-        }
+
     }
 }
 

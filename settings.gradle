@@ -1,2 +1,7 @@
+include ':commgmt'
+include ':mmkv'
+include ':login'
+include ':log'
+include ':net'
 include ':app'
 rootProject.name = "FelixChat"

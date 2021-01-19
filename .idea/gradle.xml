@@ -12,6 +12,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/commgmt" />
+            <option value="$PROJECT_DIR$/log" />
+            <option value="$PROJECT_DIR$/login" />
+            <option value="$PROJECT_DIR$/mmkv" />
+            <option value="$PROJECT_DIR$/net" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

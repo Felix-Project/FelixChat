@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply from: '../module_version.gradle'
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -25,8 +26,10 @@ android {
 }
 
 dependencies {
-    implementation "com.felix.arch:felix-arch:1.0.0"
-    implementation "com.felix.combase:felix-combase:1.0.0"
+    implementation "com.felix.arch:felix-arch:${project.ext.remoteVersion["v_arch"]}"
+    implementation "com.felix.combase:felix-combase:${project.ext.remoteVersion["v_combase"]}"
+    implementation "com.felix.utils:felix-utils:${project.ext.remoteVersion["v_utils"]}"
+    implementation "com.felix.commgmt:felix-commgmt:${project.ext.localVersion["v_commgmt"]}"
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
