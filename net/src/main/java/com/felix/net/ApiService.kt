@@ -14,7 +14,7 @@ import retrofit2.http.Body
  * @Date: 2021/1/19
  * @Des: ApiService
  */
-interface ApiService {
+internal interface ApiService {
 
     fun login(@Body loginReqBean: LoginReqBean): Call<HttpResp<LoginResp>>
 
@@ -44,5 +44,5 @@ interface ApiService {
 
 }
 
-inline val ApiDelegate
+internal inline val ApiDelegate
     get() = ApiService.create()

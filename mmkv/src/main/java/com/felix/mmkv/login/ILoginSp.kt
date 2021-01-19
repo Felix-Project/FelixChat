@@ -10,5 +10,5 @@ interface ILoginSp {
     fun getLoginInfo(): String?
 }
 
-val LoginSpDegelate: ILoginSp
+val LoginSpDelegate: ILoginSp
     get() = LoginSpModule.instance

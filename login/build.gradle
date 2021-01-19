@@ -2,6 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply from: '../module_version.gradle'
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -14,6 +16,20 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+    }
+
+    viewBinding {
+        enabled = true
     }
 
     buildTypes {
@@ -24,6 +40,24 @@ android {
     }
 }
 apply plugin: 'maven'
+task androidJavadocs(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+    classifier = 'javadoc'
+    from androidJavadocs.destinationDir
+}
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+artifacts {
+    archives androidSourcesJar
+//    archives androidJavadocsJar
+}
 uploadArchives {
     repositories.mavenDeployer {
         // 配置本地仓库路径，项目根目录下的repository目录中
@@ -51,5 +85,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation "com.felix.net:felix-net:${project.ext.localVersion["v_net"]}"
+
+    //api与compiler匹配使用，使用最新版可以保证兼容  
+    implementation "com.alibaba:arouter-api:${project.ext.thirdVersion["v_arouter_api"]}"
+    annotationProcessor "com.alibaba:arouter-compiler:${project.ext.thirdVersion["v_arouter_compiler"]}"
+    kapt "com.alibaba:arouter-compiler:${project.ext.thirdVersion["v_arouter_compiler"]}"
 
 }

@@ -3,9 +3,10 @@
     package="com.felix.login">
 
     <application>
+        <activity android:name=".ui.WelcomeActivity"></activity>
         <activity
             android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
     </application>
 
 </manifest>

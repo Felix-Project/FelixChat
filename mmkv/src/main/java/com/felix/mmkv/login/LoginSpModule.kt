@@ -9,20 +9,21 @@ import com.tencent.mmkv.MMKV
  */
 internal class LoginSpModule : ILoginSp {
     companion object {
+        const val SpId = "LoginSpModule"
+        private const val KEY_LOGIN_INFO = "LOGIN_INFO"
         val instance by lazy {
             LoginSpModule()
         }
     }
 
-    init {
-        MMKV.defaultMMKV()
-    }
+    private val mmkv = MMKV.mmkvWithID(SpId)
 
     override fun getLoginInfo(): String? {
-        return ""
+        return mmkv?.decodeString(KEY_LOGIN_INFO)
+
     }
 
     override fun saveLoginInfo(info: String) {
-
+        mmkv?.encode(KEY_LOGIN_INFO, info)
     }
 }

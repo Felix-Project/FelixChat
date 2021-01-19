@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 apply from: '../module_version.gradle'
 android {
@@ -15,6 +16,17 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
     }
 
     buildTypes {
@@ -30,6 +42,11 @@ dependencies {
     implementation "com.felix.combase:felix-combase:${project.ext.remoteVersion["v_combase"]}"
     implementation "com.felix.utils:felix-utils:${project.ext.remoteVersion["v_utils"]}"
     implementation "com.felix.commgmt:felix-commgmt:${project.ext.localVersion["v_commgmt"]}"
+    implementation "com.felix.login:felix-login:${project.ext.localVersion["v_login"]}"
+
+    implementation "com.alibaba:arouter-api:${project.ext.thirdVersion["v_arouter_api"]}"
+    annotationProcessor "com.alibaba:arouter-compiler:${project.ext.thirdVersion["v_arouter_compiler"]}"
+    kapt "com.alibaba:arouter-compiler:${project.ext.thirdVersion["v_arouter_compiler"]}"
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

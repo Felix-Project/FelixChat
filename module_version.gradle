@@ -3,10 +3,13 @@ def v_combase_module = "1.0.0"
 def v_utils_module = "1.0.0"
 
 def v_log_module = "1.0.0"
-def v_net_module = "1.0.0"
-def v_login_module = "1.0.0"
-def v_mmkv_module = "1.0.0"
+def v_net_module = "1.0.2"
+def v_login_module = "1.0.3"
+def v_mmkv_module = "1.0.2"
 def v_commgmt_module = "1.0.0"
+
+def v_arouter_api_module = "1.4.0"
+def v_arouter_compiler_module = "1.2.1"
 ext {
     remoteVersion = [
             v_arch   : v_arch_module,
@@ -14,10 +17,15 @@ ext {
             v_utils  : v_utils_module
     ]
     localVersion = [
-            v_log: v_log_module,
-            v_net: v_net_module,
-            v_login: v_login_module,
-            v_mmkv: v_mmkv_module,
+            v_log    : v_log_module,
+            v_net    : v_net_module,
+            v_login  : v_login_module,
+            v_mmkv   : v_mmkv_module,
             v_commgmt: v_commgmt_module,
+    ]
+
+    thirdVersion = [
+            v_arouter_api     : v_arouter_api_module,
+            v_arouter_compiler: v_arouter_compiler_module,
     ]
 }
