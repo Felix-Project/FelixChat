@@ -1,4 +1,4 @@
-package com.felix.felixchat
+package com.felix.chat
 
 import com.alibaba.android.arouter.launcher.ARouter
 import com.felix.commgmt.BaseCompApp

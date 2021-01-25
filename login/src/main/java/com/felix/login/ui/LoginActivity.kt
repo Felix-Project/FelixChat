@@ -3,11 +3,10 @@ package com.felix.login.ui
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.core.widget.addTextChangedListener
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.felix.arch.mvvm.BaseActivity
 import com.felix.lib_app_tools.toast.ToastDelegate
+import com.felix.lib_arch.mvvm.BaseActivity
 import com.felix.login.databinding.ActivityLoginBinding
 import com.felix.net.bean.LoginReqBean
 import com.felix.net.data.DataDelegate

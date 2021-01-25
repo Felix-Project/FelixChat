@@ -1,6 +1,6 @@
-def v_arch_module = "1.0.0"
+def v_arch_module = "1.0.1"
 def v_combase_module = "1.0.0"
-def v_utils_module = "1.0.0"
+def v_utils_module = "1.0.2"
 
 def v_log_module = "1.0.0"
 def v_net_module = "1.0.2"

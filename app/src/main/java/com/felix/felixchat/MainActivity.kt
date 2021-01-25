@@ -1,4 +1,4 @@
-package com.felix.felixchat
+package com.felix.chat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
