@@ -22,9 +22,9 @@ ext {
 
     usePathLog = false
     usePathMmkv = false
-    usePathCommgmt = false && usePathMmkv
-    usePathNet = false && usePathLog && usePathMmkv
-    usePathLogin = false && usePathNet
+    usePathCommgmt = false || usePathMmkv
+    usePathNet = false || usePathLog || usePathMmkv
+    usePathLogin = false || usePathNet
 
     remote_arch = "com.felix.arch:felix-arch:${v_arch_module}"
     remote_combase = "com.felix.combase:felix-combase:${v_combase_module}"
