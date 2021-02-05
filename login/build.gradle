@@ -12,7 +12,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
-        versionName project.ext.localVersion["v_login"]
+        versionName project.ext.v_login
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -70,12 +70,11 @@ uploadArchives {
 }
 
 dependencies {
-    implementation "com.felix.arch:felix-arch:${project.ext.remoteVersion["v_arch"]}"
-    implementation "com.felix.combase:felix-combase:${project.ext.remoteVersion["v_combase"]}"
-//    implementation "com.felix.utils:felix-utils:${project.ext.remoteVersion["v_utils"]}"
-//    implementation "com.felix.net:felix-net:${project.ext.localVersion["v_net"]}"
+    implementation project.ext.local_net
 
-    implementation project(path: ':net')
+    implementation project.ext.remote_arch
+    implementation project.ext.remote_combase
+//    implementation project.ext.remote_utils
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -90,11 +89,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
 
-
-
-    //api与compiler匹配使用，使用最新版可以保证兼容  
-    implementation "com.alibaba:arouter-api:${project.ext.thirdVersion["v_arouter_api"]}"
-    annotationProcessor "com.alibaba:arouter-compiler:${project.ext.thirdVersion["v_arouter_compiler"]}"
-    kapt "com.alibaba:arouter-compiler:${project.ext.thirdVersion["v_arouter_compiler"]}"
+    implementation project.ext.third_arouter_api
+    annotationProcessor project.ext.third_arouter_processor
+    kapt project.ext.third_arouter_kapt
 
 }

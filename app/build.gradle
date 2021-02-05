@@ -38,17 +38,17 @@ android {
 }
 
 dependencies {
-    implementation "com.felix.arch:felix-arch:${project.ext.remoteVersion["v_arch"]}"
-    implementation "com.felix.combase:felix-combase:${project.ext.remoteVersion["v_combase"]}"
-    implementation "com.felix.utils:felix-utils:${project.ext.remoteVersion["v_utils"]}"
-//    implementation "com.felix.commgmt:felix-commgmt:${project.ext.localVersion["v_commgmt"]}"
-//    implementation "com.felix.login:felix-login:${project.ext.localVersion["v_login"]}"
-    implementation project(path: ':login')
-    implementation project(path: ':commgmt')
+    implementation project.ext.remote_arch
+    implementation project.ext.remote_combase
+    implementation project.ext.remote_utils
 
-    implementation "com.alibaba:arouter-api:${project.ext.thirdVersion["v_arouter_api"]}"
-    annotationProcessor "com.alibaba:arouter-compiler:${project.ext.thirdVersion["v_arouter_compiler"]}"
-    kapt "com.alibaba:arouter-compiler:${project.ext.thirdVersion["v_arouter_compiler"]}"
+
+    implementation project.ext.local_login
+    implementation project.ext.local_commgmt
+
+    implementation project.ext.third_arouter_api
+    annotationProcessor project.ext.third_arouter_processor
+    kapt project.ext.third_arouter_kapt
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

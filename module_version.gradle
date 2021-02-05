@@ -2,30 +2,61 @@ def v_arch_module = "1.0.1"
 def v_combase_module = "1.0.0"
 def v_utils_module = "1.0.4"
 
-def v_log_module = "1.0.0"
-def v_net_module = "1.0.2"
-def v_login_module = "1.0.3"
-def v_mmkv_module = "1.0.2"
-def v_commgmt_module = "1.0.0"
 
 def v_arouter_api_module = "1.4.0"
 def v_arouter_compiler_module = "1.2.1"
-ext {
-    remoteVersion = [
-            v_arch   : v_arch_module,
-            v_combase: v_combase_module,
-            v_utils  : v_utils_module
-    ]
-    localVersion = [
-            v_log    : v_log_module,
-            v_net    : v_net_module,
-            v_login  : v_login_module,
-            v_mmkv   : v_mmkv_module,
-            v_commgmt: v_commgmt_module,
-    ]
 
-    thirdVersion = [
-            v_arouter_api     : v_arouter_api_module,
-            v_arouter_compiler: v_arouter_compiler_module,
-    ]
+ext {
+    v_log = "1.0.0"
+    v_net = "1.0.3"
+    v_login = "1.0.4"
+    v_mmkv = "1.0.2"
+    v_commgmt = "1.0.0"
+
+
+    usePathLog = false
+    usePathMmkv = false
+    usePathCommgmt = false && usePathMmkv
+    usePathNet = false && usePathLog && usePathMmkv
+    usePathLogin = false && usePathNet
+
+    remote_arch = "com.felix.arch:felix-arch:${v_arch_module}"
+    remote_combase = "com.felix.combase:felix-combase:${v_combase_module}"
+    remote_utils = "com.felix.utils:felix-utils:${v_utils_module}"
+
+
+    third_arouter_api = "com.alibaba:arouter-api:${v_arouter_api_module}"
+    third_arouter_processor = "com.alibaba:arouter-compiler:${v_arouter_compiler_module}"
+    third_arouter_kapt = "com.alibaba:arouter-compiler:${v_arouter_compiler_module}"
+
+
+    if (usePathLogin) {
+        local_login = dependencies.project(path: ':login')
+    } else {
+        local_login = "com.felix.login:felix-login:${v_login}"
+    }
+
+    if (usePathLog) {
+        local_log = dependencies.project(path: ':log')
+    } else {
+        local_log = "com.felix.log:felix-log:${v_log}"
+    }
+
+    if (usePathCommgmt) {
+        local_commgmt = dependencies.project(path: ':commgmt')
+    } else {
+        local_commgmt = "com.felix.commgmt:felix-commgmt:${v_commgmt}"
+    }
+
+    if (usePathMmkv) {
+        local_mmkv = dependencies.project(path: ':mmkv')
+    } else {
+        local_mmkv = "com.felix.mmkv:felix-mmkv:${v_mmkv}"
+    }
+
+    if (usePathNet) {
+        local_net = dependencies.project(path: ':net')
+    } else {
+        local_net = "com.felix.net:felix-net:${v_net}"
+    }
 }

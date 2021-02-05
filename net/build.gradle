@@ -10,7 +10,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
-        versionName project.ext.localVersion["v_net"]
+        versionName project.ext.v_net
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -53,6 +53,11 @@ uploadArchives {
     }
 }
 dependencies {
+    implementation project.ext.local_log
+    implementation project.ext.local_mmkv
+
+    implementation project.ext.remote_utils
+
     def retrofit2_version = "2.3.0"
     def okhttp3_version = "3.12.1"
     def kotlinCoroutineVersion = "1.2.2"
@@ -77,9 +82,4 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutineVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutineVersion"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines:0.19.2'
-
-    implementation "com.felix.utils:felix-utils:${project.ext.remoteVersion["v_utils"]}"
-    implementation "com.felix.log:felix-log:${project.ext.localVersion["v_log"]}"
-    implementation "com.felix.mmkv:felix-mmkv:${project.ext.localVersion["v_mmkv"]}"
-
 }
