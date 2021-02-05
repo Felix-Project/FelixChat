@@ -8,6 +8,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.POST
 
 /**
  * @Author: Mingfa.Huang
@@ -16,7 +17,8 @@ import retrofit2.http.Body
  */
 internal interface ApiService {
 
-    fun login(@Body loginReqBean: LoginReqBean): Call<HttpResp<LoginResp>>
+    @POST("chat/user/login.php")
+    fun login(@Body loginReqBean: LoginReqBean): Call<HttpResp<UserInfo>>
 
     fun getChatList(@Body chatReq: ChatReq): Call<HttpResp<List<ChatBean>>>
 
@@ -24,6 +26,8 @@ internal interface ApiService {
 
 
     companion object {
+        const val BASE_URL="http://192.168.1.221:8080"
+//        const val BASE_URL="http://jp-tyo-dvm-2.sakurafrp.com:65076"
         fun create(): ApiService {
             val logger = HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
@@ -34,7 +38,7 @@ internal interface ApiService {
                 .build()
 
             return Retrofit.Builder()
-                .baseUrl("BASE_URL")
+                .baseUrl(BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

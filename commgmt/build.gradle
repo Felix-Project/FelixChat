@@ -38,7 +38,6 @@ dependencies {
     implementation "com.felix.arch:felix-arch:${project.ext.remoteVersion["v_arch"]}"
     implementation "com.felix.combase:felix-combase:${project.ext.remoteVersion["v_combase"]}"
     implementation "com.felix.utils:felix-utils:${project.ext.remoteVersion["v_utils"]}"
-    implementation "com.felix.utils:felix-utils:${project.ext.remoteVersion["v_utils"]}"
 
     implementation "com.felix.mmkv:felix-mmkv:${project.ext.localVersion["v_mmkv"]}"
 

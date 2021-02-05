@@ -9,7 +9,11 @@ import com.felix.lib_app_tools.toast.ToastDelegate
 import com.felix.lib_arch.mvvm.BaseActivity
 import com.felix.login.databinding.ActivityLoginBinding
 import com.felix.net.bean.LoginReqBean
+import com.felix.net.bean.base.isSuccess
 import com.felix.net.data.DataDelegate
+import com.felix.net.data.UserInfoManager
+import com.felix.utils.utils.md5
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
@@ -22,6 +26,7 @@ class LoginActivity : BaseActivity() {
         val binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.apply {
+            login.isEnabled = username.text.isNotEmpty() && password.text.isNotEmpty()
             username.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
@@ -65,18 +70,26 @@ class LoginActivity : BaseActivity() {
                     ToastDelegate.show("密码不能为空")
                     return@setOnClickListener
                 }
-                scope.launch {
+                scope.launch(Dispatchers.IO) {
                     LoginReqBean(
                         userId = username.text.toString(),
-                        passwd = password.text.toString()
+                        passwd = password.text.toString().md5()
                     ).runCatching {
                         DataDelegate.login(this)
                     }.also {
                         it.exceptionOrNull()?.printStackTrace()
-                    }.getOrNull()?.let {
-                        ARouter.getInstance().build("/app/MainActivity").navigation()
+                    }.getOrNull()?.also {
+                        if (it.isSuccess()) {
+                            it.obj?.let {
+                                UserInfoManager.instance.userInfo = it
+                            }
+                            ARouter.getInstance().build("/app/MainActivity").navigation()
+                            finish()
+                        } else {
+                            ToastDelegate.show(it.msg)
+                        }
                     } ?: kotlin.run {
-                        ToastDelegate.show("登录失败")
+                        ToastDelegate.show("网络错误，请重试")
                     }
                 }
             }

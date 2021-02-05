@@ -9,25 +9,31 @@ import android.os.Parcelable
  * @Des: UserInfo
  */
 data class UserInfo(
-    var userId: String,
-    var nickName: String?,
-    var sex: Boolean?,
-    var avator: String?
+    val avator: String?,
+    val id: String,
+    val nickName: String?,
+    val sex: Boolean?,
+    val token: String,
+    val userId: String
 ) : Parcelable {
     constructor(source: Parcel) : this(
+        source.readString(),
         source.readString() ?: "",
         source.readString(),
         source.readValue(Boolean::class.java.classLoader) as Boolean?,
-        source.readString()
+        source.readString() ?: "",
+        source.readString() ?: ""
     )
 
     override fun describeContents() = 0
 
     override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
-        writeString(userId)
+        writeString(avator)
+        writeString(id)
         writeString(nickName)
         writeValue(sex)
-        writeString(avator)
+        writeString(token)
+        writeString(userId)
     }
 
     companion object {

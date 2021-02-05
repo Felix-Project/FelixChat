@@ -1,6 +1,7 @@
 package com.felix.net.data
 
 import com.felix.net.bean.*
+import com.felix.net.bean.base.HttpResp
 
 /**
  * @Author: Mingfa.Huang
@@ -8,7 +9,7 @@ import com.felix.net.bean.*
  * @Des: IData
  */
 interface IData {
-    fun login(loginReqBean: LoginReqBean): LoginResp?
+    fun login(loginReqBean: LoginReqBean): HttpResp<UserInfo>?
 
     fun getChatList(chatReq: ChatReq): List<List<ChatBean>>
 

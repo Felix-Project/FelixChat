@@ -73,6 +73,9 @@ dependencies {
     implementation "com.felix.arch:felix-arch:${project.ext.remoteVersion["v_arch"]}"
     implementation "com.felix.combase:felix-combase:${project.ext.remoteVersion["v_combase"]}"
 //    implementation "com.felix.utils:felix-utils:${project.ext.remoteVersion["v_utils"]}"
+//    implementation "com.felix.net:felix-net:${project.ext.localVersion["v_net"]}"
+
+    implementation project(path: ':net')
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -86,7 +89,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation "com.felix.net:felix-net:${project.ext.localVersion["v_net"]}"
+
+
 
     //api与compiler匹配使用，使用最新版可以保证兼容  
     implementation "com.alibaba:arouter-api:${project.ext.thirdVersion["v_arouter_api"]}"

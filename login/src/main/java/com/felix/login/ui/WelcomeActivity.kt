@@ -10,7 +10,7 @@ class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
-        TokenDelegate?.let {
+        TokenDelegate?.also {
             ARouter.getInstance().build("/app/MainActivity").navigation()
         } ?: kotlin.run {
             ARouter.getInstance().build("/login/LoginActivity").navigation()

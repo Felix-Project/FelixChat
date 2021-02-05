@@ -46,7 +46,6 @@ dependencies {
     implementation project(path: ':login')
     implementation project(path: ':commgmt')
 
-
     implementation "com.alibaba:arouter-api:${project.ext.thirdVersion["v_arouter_api"]}"
     annotationProcessor "com.alibaba:arouter-compiler:${project.ext.thirdVersion["v_arouter_compiler"]}"
     kapt "com.alibaba:arouter-compiler:${project.ext.thirdVersion["v_arouter_compiler"]}"

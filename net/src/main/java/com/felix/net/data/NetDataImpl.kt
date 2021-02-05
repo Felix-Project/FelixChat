@@ -2,6 +2,7 @@ package com.felix.net.data
 
 import com.felix.net.ApiDelegate
 import com.felix.net.bean.*
+import com.felix.net.bean.base.HttpResp
 import com.felix.net.bean.base.getObj
 
 /**
@@ -10,9 +11,9 @@ import com.felix.net.bean.base.getObj
  * @Des: NetDataImpl
  */
 class NetDataImpl : IData {
-    override fun login(loginReqBean: LoginReqBean): LoginResp? {
+    override fun login(loginReqBean: LoginReqBean): HttpResp<UserInfo>? {
         return ApiDelegate.login(loginReqBean).let {
-            it.execute().body()?.getObj()
+            it.execute().body()
         }
     }
 
@@ -32,6 +33,7 @@ class NetDataImpl : IData {
             }
             map.values.map { it.toList() }.toList()
         } ?: emptyList()
+
     }
 
     override fun getUserInfo(userId: String): UserInfo? {
