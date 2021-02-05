@@ -10,7 +10,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
-        versionName project.ext.v_commgmt
+        versionName v_commgmt
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -42,7 +42,7 @@ artifacts {
     archives androidSourcesJar
     archives androidJavadocsJar
 }
-uploadArchives {
+uploadArchives() {
     repositories.mavenDeployer {
         // 配置本地仓库路径，项目根目录下的repository目录中
         repository(url: uri('../repository'))
@@ -53,12 +53,12 @@ uploadArchives {
     }
 }
 dependencies {
-    implementation project.ext.local_mmkv
+    implementation local_mmkv
 
 
-    implementation project.ext.remote_arch
-    implementation project.ext.remote_combase
-    implementation project.ext.remote_utils
+    implementation remote_arch
+    implementation remote_combase
+    implementation remote_utils
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

@@ -12,7 +12,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
-        versionName project.ext.v_login
+        versionName v_login
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -70,11 +70,11 @@ uploadArchives {
 }
 
 dependencies {
-    implementation project.ext.local_net
+    implementation local_net
 
-    implementation project.ext.remote_arch
-    implementation project.ext.remote_combase
-//    implementation project.ext.remote_utils
+    implementation remote_arch
+    implementation remote_combase
+//    implementation remote_utils
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -89,8 +89,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
 
-    implementation project.ext.third_arouter_api
-    annotationProcessor project.ext.third_arouter_processor
-    kapt project.ext.third_arouter_kapt
+    implementation third_arouter_api
+    annotationProcessor third_arouter_processor
+    kapt third_arouter_kapt
 
 }

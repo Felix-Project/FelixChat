@@ -38,17 +38,17 @@ android {
 }
 
 dependencies {
-    implementation project.ext.remote_arch
-    implementation project.ext.remote_combase
-    implementation project.ext.remote_utils
+    implementation remote_arch
+    implementation remote_combase
+    implementation remote_utils
 
 
-    implementation project.ext.local_login
-    implementation project.ext.local_commgmt
+    implementation local_login
+    implementation local_commgmt
 
-    implementation project.ext.third_arouter_api
-    annotationProcessor project.ext.third_arouter_processor
-    kapt project.ext.third_arouter_kapt
+    implementation third_arouter_api
+    annotationProcessor third_arouter_processor
+    kapt third_arouter_kapt
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

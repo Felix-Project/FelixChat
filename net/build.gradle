@@ -10,7 +10,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
-        versionName project.ext.v_net
+        versionName v_net
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -53,10 +53,10 @@ uploadArchives {
     }
 }
 dependencies {
-    implementation project.ext.local_log
-    implementation project.ext.local_mmkv
+    implementation local_log
+    implementation local_mmkv
 
-    implementation project.ext.remote_utils
+    implementation remote_utils
 
     def retrofit2_version = "2.3.0"
     def okhttp3_version = "3.12.1"
