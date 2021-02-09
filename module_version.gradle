@@ -7,17 +7,15 @@ def v_arouter_api_module = "1.4.0"
 def v_arouter_compiler_module = "1.2.1"
 
 ext {
-    v_log = "1.0.0"
-    v_net = "1.0.3"
-    v_login = "1.0.4"
-    v_mmkv = "1.0.2"
-    v_commgmt = "1.0.0"
+    v_base = "1.0.5"
+    v_base_business = "1.0.5"
+    v_business = "1.0.5"
 
-//    v_log = "1.0.5"
-//    v_net = "1.0.5"
-//    v_login = "1.0.5"
-//    v_mmkv = "1.0.5"
-//    v_commgmt = "1.0.5"
+    v_log = v_base
+    v_mmkv = v_base
+    v_commgmt = v_base_business
+    v_net = v_base_business
+    v_login = v_business
 
 
     usePathLog = false

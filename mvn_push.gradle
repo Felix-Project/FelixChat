@@ -27,3 +27,7 @@ uploadArchives {
         pom.version = android.defaultConfig.versionName // 版本号
     }
 }
+
+//gradlew log:uploadArchives mmkv:uploadArchives
+//gradlew commgmt:uploadArchives net:uploadArchives
+//gradlew login:uploadArchives
