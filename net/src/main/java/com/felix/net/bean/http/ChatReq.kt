@@ -1,4 +1,4 @@
-package com.felix.net.bean
+package com.felix.net.bean.http
 
 /**
  * @Author: Mingfa.Huang

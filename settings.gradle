@@ -1,3 +1,6 @@
+include ':encryption'
+include ':contact'
+include ':chat'
 include ':commgmt'
 include ':mmkv'
 include ':login'

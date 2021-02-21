@@ -8,8 +8,8 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.felix.lib_app_tools.toast.ToastDelegate
 import com.felix.lib_arch.mvvm.BaseActivity
 import com.felix.login.databinding.ActivityLoginBinding
-import com.felix.net.bean.LoginReqBean
 import com.felix.net.bean.base.isSuccess
+import com.felix.net.bean.http.LoginReqBean
 import com.felix.net.data.DataDelegate
 import com.felix.net.data.UserInfoManager
 import com.felix.utils.utils.md5
@@ -73,7 +73,7 @@ class LoginActivity : BaseActivity() {
                 scope.launch(Dispatchers.IO) {
                     LoginReqBean(
                         userId = username.text.toString(),
-                        passwd = password.text.toString().md5()
+                        passwd = password.text.toString().md5() ?: ""
                     ).runCatching {
                         DataDelegate.login(this)
                     }.also {

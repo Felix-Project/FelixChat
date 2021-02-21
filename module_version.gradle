@@ -1,6 +1,6 @@
-def v_arch_module = "1.0.1"
+def v_arch_module = "1.0.8"
 def v_combase_module = "1.0.0"
-def v_utils_module = "1.0.4"
+def v_utils_module = "1.0.8"
 
 
 def v_arouter_api_module = "1.4.0"
@@ -16,13 +16,19 @@ ext {
     v_commgmt = v_base_business
     v_net = v_base_business
     v_login = v_business
+    v_chat = "1.0.0"
+    v_contact = "1.0.0"
+    v_encryption = "1.0.0"
 
 
     usePathLog = false
-    usePathMmkv = false
+    usePathMmkv = true
+    usePathEncryption = true
     usePathCommgmt = false || usePathMmkv
-    usePathNet = false || usePathLog || usePathMmkv
+    usePathNet = true || usePathLog || usePathMmkv
     usePathLogin = false || usePathNet
+    usePathChat = true || usePathNet
+    usePathContact = true || usePathNet
 
     remote_arch = "com.felix.arch:felix-arch:${v_arch_module}"
     remote_combase = "com.felix.combase:felix-combase:${v_combase_module}"
@@ -38,6 +44,16 @@ ext {
         local_login = dependencies.project(path: ':login')
     } else {
         local_login = "com.felix.login:felix-login:${v_login}"
+    }
+    if (usePathChat) {
+        local_chat = dependencies.project(path: ':chat')
+    } else {
+        local_chat = "com.felix.chat:felix-chat:${v_chat}"
+    }
+    if (usePathContact) {
+        local_contact = dependencies.project(path: ':contact')
+    } else {
+        local_contact = "com.felix.contact:felix-contact:${v_contact}"
     }
 
     if (usePathLog) {
@@ -62,5 +78,10 @@ ext {
         local_net = dependencies.project(path: ':net')
     } else {
         local_net = "com.felix.net:felix-net:${v_net}"
+    }
+    if (usePathEncryption) {
+        local_encryption = dependencies.project(path: ':encryption')
+    } else {
+        local_encryption = "com.felix.encryption:felix-encryption:${v_encryption}"
     }
 }

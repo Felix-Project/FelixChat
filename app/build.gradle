@@ -35,6 +35,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -44,7 +47,10 @@ dependencies {
 
 
     implementation local_login
+    implementation local_chat
     implementation local_commgmt
+    implementation local_mmkv
+    implementation local_contact
 
     implementation third_arouter_api
     annotationProcessor third_arouter_processor

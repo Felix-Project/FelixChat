@@ -12,7 +12,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/chat" />
             <option value="$PROJECT_DIR$/commgmt" />
+            <option value="$PROJECT_DIR$/contact" />
+            <option value="$PROJECT_DIR$/encryption" />
             <option value="$PROJECT_DIR$/log" />
             <option value="$PROJECT_DIR$/login" />
             <option value="$PROJECT_DIR$/mmkv" />

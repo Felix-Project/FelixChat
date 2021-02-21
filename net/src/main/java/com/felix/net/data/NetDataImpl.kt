@@ -3,7 +3,9 @@ package com.felix.net.data
 import com.felix.net.ApiDelegate
 import com.felix.net.bean.*
 import com.felix.net.bean.base.HttpResp
-import com.felix.net.bean.base.getObj
+import com.felix.net.bean.base.isSuccess
+import com.felix.net.bean.http.*
+import com.felix.utils.utils.encryption.aes
 
 /**
  * @Author: Mingfa.Huang
@@ -46,5 +48,26 @@ class NetDataImpl : IData {
         return UserInfoReq(ownerUserId = userId).run {
             ApiDelegate.getUserInfo(this)?.execute()?.body()?.obj
         }
+    }
+
+    override fun getContactList(contactReq: ContactReq): List<Contact>? {
+        return null
+    }
+
+    override fun addContact(addContactReq: AddContactReq, key: String): HttpResp<Any>? {
+        return addContactReq.also {
+            if (it.encrypted) {
+                it.remark = it.remark.aes(key) ?: ""
+                it.level = it.level.aes(key) ?: ""
+                it.remark = it.remark.aes(key) ?: ""
+                it.groupName = it.groupName.aes(key) ?: ""
+            }
+        }.let {
+            ApiDelegate.addContact(it)?.execute()?.body()
+        }
+    }
+
+    override fun searchContact(searchReq: SearchReq): HttpResp<List<Contact>>? {
+        return ApiDelegate.searchContact(searchReq).execute()?.body()
     }
 }

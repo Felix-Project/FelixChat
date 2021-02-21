@@ -2,6 +2,8 @@ package com.felix.net
 
 import com.felix.net.bean.*
 import com.felix.net.bean.base.HttpResp
+import com.felix.net.bean.http.*
+import com.felix.net.data.TokenIntercept
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -24,17 +26,27 @@ internal interface ApiService {
 
     fun getUserInfo(@Body userInfoReq: UserInfoReq): Call<HttpResp<List<UserInfo>>>
 
+    @POST("chat/contact/getContact.php")
+    fun getContactList(@Body contactReq: ContactReq): Call<HttpResp<List<Contact>>>
+
+
+    @POST("chat/contact/addContact.php")
+    fun addContact(@Body addContactReq: AddContactReq): Call<HttpResp<Any>>
+
+    @POST("chat/contact/searchContact.php")
+    fun searchContact(@Body searchReq: SearchReq): Call<HttpResp<List<Contact>>>
+
 
     companion object {
-        const val BASE_URL="http://192.168.1.221:8080"
-//        const val BASE_URL="http://jp-tyo-dvm-2.sakurafrp.com:65076"
+
         fun create(): ApiService {
             val logger = HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             }
 
             val client = OkHttpClient.Builder()
-                .addInterceptor(logger)
+                .addInterceptor(TokenIntercept())
+                .addNetworkInterceptor(logger)
                 .build()
 
             return Retrofit.Builder()
@@ -50,3 +62,7 @@ internal interface ApiService {
 
 internal inline val ApiDelegate
     get() = ApiService.create()
+
+const val BASE_URL = "http://192.168.1.221:8080"
+
+//        const val BASE_URL="http://jp-tyo-dvm-2.sakurafrp.com:65076"
